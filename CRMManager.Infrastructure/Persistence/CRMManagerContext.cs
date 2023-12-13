@@ -14,6 +14,13 @@ namespace CRMManager.Infrastructure.Persistence
         {
             
         }
-        public DbSet<Customer> customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CRMManagerContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }

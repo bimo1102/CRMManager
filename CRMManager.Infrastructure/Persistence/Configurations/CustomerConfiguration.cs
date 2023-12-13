@@ -15,9 +15,8 @@ namespace CRMManager.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.HasKey(c => c.Id);
-            builder
-                .Property(c => c.Id)
-                .HasConversion(c => c.Value, value => CustomerId.Create(value));
+            builder.Property(c => c.Id)
+                   .HasConversion(c => c.Value, value => CustomerId.Create(value));
         }
     }
 }
