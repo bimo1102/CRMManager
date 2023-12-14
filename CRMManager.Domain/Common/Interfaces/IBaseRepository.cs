@@ -11,7 +11,7 @@ namespace CRMManager.Domain.Common.Interfaces
         Task<List<T>> GetAllAsync();
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task DeleteAsync(TId id);
         Task<T> GetByIdAsync(TId id);
 
     }

@@ -1,12 +1,8 @@
 ﻿using CRMManager.Domain.Aggregates.CustomerAggregate;
 using CRMManager.Domain.Aggregates.CustomerAggregate.Repository;
 using CRMManager.Domain.Aggregates.CustomerAggregate.ValueObjects;
+using CRMManager.Domain.Common.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRMManager.Infrastructure.Persistence.Respositories
 {
@@ -24,10 +20,16 @@ namespace CRMManager.Infrastructure.Persistence.Respositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Customer entity)
+        
+
+        public async Task DeleteAsync(CustomerId id)
         {
-            _context.Customers.Remove(entity);
-            await _context.SaveChangesAsync();
+            var customer = await _context.Customers.FindAsync(id);
+            if(customer != null)
+            {
+                _context.Remove(customer);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<List<Customer>> GetAllAsync()
@@ -42,7 +44,7 @@ namespace CRMManager.Infrastructure.Persistence.Respositories
 
         public async Task UpdateAsync(Customer entity)
         {
-            _context.Customers.Update(entity);
+            _context.Update(entity);
             await _context.SaveChangesAsync();
         }
     }

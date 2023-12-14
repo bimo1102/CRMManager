@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRMManager.Infrastructure.Migrations
 {
     [DbContext(typeof(CRMManagerContext))]
-    [Migration("20231213174035_inial")]
-    partial class inial
+    [Migration("20231214024703_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,10 @@ namespace CRMManager.Infrastructure.Migrations
             modelBuilder.Entity("CRMManager.Domain.Aggregates.CustomerAggregate.Customer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()

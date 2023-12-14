@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CRMManager.Domain.Aggregates.CustomerAggregate.ValueObjects
 {
     public class CustomerId
     {
         public int Value { get; private set; }
-        public CustomerId(int value)
+        private CustomerId(int value)
         {
             Value = value;
         }
@@ -17,9 +12,9 @@ namespace CRMManager.Domain.Aggregates.CustomerAggregate.ValueObjects
         {
             return new CustomerId(value);
         }
-        public CustomerId()
+        private CustomerId()
         {
-            
+
         }
     }
 }

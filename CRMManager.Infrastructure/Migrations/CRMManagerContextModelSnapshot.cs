@@ -24,7 +24,10 @@ namespace CRMManager.Infrastructure.Migrations
             modelBuilder.Entity("CRMManager.Domain.Aggregates.CustomerAggregate.Customer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
